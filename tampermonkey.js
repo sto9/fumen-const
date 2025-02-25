@@ -14,6 +14,8 @@
         let script = document.createElement('script');
         script.setAttribute('src', 'https://sto9.github.io/fumen-const/function.js');
         document.head.appendChild(script);
-        rewriteButton();
+        script.addEventListener('load', function () {
+            rewriteButton();
+        });
     };
 })();
