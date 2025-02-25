@@ -127,5 +127,5 @@ async function addFumenConst() {
 function rewriteButton() {
   let span = document.getElementById("reload_btn").querySelector("span");
   span.setAttribute("onclick", "javascript:addFumenConst()");
-  span.innerText = "＜譜面定数を表示＞";
+  span.innerText = "譜面定数を表示";
 }
