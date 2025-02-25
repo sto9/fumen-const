@@ -10,12 +10,12 @@
 
 (function () {
     'use strict';
-    window.onload = function () {
+    window.addEventListener("load", function () {
         let script = document.createElement('script');
         script.setAttribute('src', 'https://sto9.github.io/fumen-const/function.js');
         document.head.appendChild(script);
         script.addEventListener('load', function () {
             rewriteButton();
         });
-    };
+    });
 })();

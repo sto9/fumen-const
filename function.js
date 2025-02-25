@@ -1,13 +1,3 @@
-// ==UserScript==
-// @name         譜面定数表示するやつ
-// @namespace    http://tampermonkey.net/
-// @version      1.0
-// @description  譜面定数を表示する
-// @author       null
-// @include      https://sdvx.in/chunithm/sort/*
-// @grant        none
-// ==/UserScript==
-
 let extended = false;
 let all_diffs_by_title = {}; // タイトルをキーにして、各難易度の定数を持つ
 let all_diffs_by_title_lowercase = {};
@@ -118,6 +108,13 @@ async function addFumenConst() {
   if (extended) return;
   extended = true;
   await loadMusics();
+
+  // 許容を表示する拡張機能を使用している場合、それのヘッダー部分を拡張
+  let tolerance_header = document.getElementById("tolerance-header");
+  if (tolerance_header !== null) {
+    tolerance_header.firstChild.before(document.createElement("td"));
+  }
+
   const script_elements = document.documentElement.getElementsByTagName('script');
   const regex_SORT = new RegExp('^SORT[0-9]');
   for (let script_element of script_elements) {
@@ -127,7 +124,7 @@ async function addFumenConst() {
   }
 }
 
-function  rewriteButton(){
+function rewriteButton() {
   let span = document.getElementById("reload_btn").querySelector("span");
   span.setAttribute("onclick", "javascript:addFumenConst()");
   span.innerText = "★譜面定数を表示★";
